@@ -11,18 +11,19 @@ const ProfileSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    unique: true
+    required: true
   },
   email: {
     type: String,
-    unique: true
+    default: ""
   },
   password: {
     type: String,
     required: true
   },
   avatar: {
-    type: String
+    type: String,
+    default: ""
   },
   date: {
     type: Date,
