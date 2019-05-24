@@ -56,7 +56,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     autoFocus
                   />
                 </div>
-                <div className='field-body'>
+                <div className='field'>
                   <input
                     id='username'
                     type='text'
