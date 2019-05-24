@@ -11,7 +11,7 @@ const JobPosting = require("../../models/JobPosting");
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const postings = await JobPosting.find();
+    const postings = await JobPosting.find().sort({ date: -1 });
 
     res.json(postings);
   } catch (err) {
@@ -61,9 +61,7 @@ router.post(
       check("company", "The company name is required")
         .not()
         .isEmpty(),
-      check("phone", "A valid Phone Number is required")
-        .isNumeric()
-        .isLength({ min: 10, max: 15 }),
+      check("phone", "A valid Phone Number is required").isNumeric(),
       check("description", "The job description is required")
         .not()
         .isEmpty()
@@ -102,8 +100,8 @@ router.post(
     if (phone) newJob.contact.phone = phone;
     if (skills) newJob.skills = skills.split(",").map(skills => skills.trim());
     if (experience) newJob.experience = experience;
-    if (employmenttype) newJob.employmenttype = employmenttype;
-    if (industrytype) newJob.industrytype = industrytype;
+    if (employmenttype) newJob.employmentType = employmenttype;
+    if (industrytype) newJob.industryType = industrytype;
     if (email) newJob.contact.email = email;
     if (city) newJob.location.city = city;
     if (state) newJob.location.state = state;
@@ -188,8 +186,8 @@ router.put(
     if (phone) newJob.contact.phone = phone;
     if (skills) newJob.skills = skills.split(",").map(skills => skills.trim());
     if (experience) newJob.experience = experience;
-    if (employmenttype) newJob.employmenttype = employmenttype;
-    if (industrytype) newJob.industrytype = industrytype;
+    if (employmenttype) newJob.employmentType = employmenttype;
+    if (industrytype) newJob.industryType = industrytype;
     if (email) newJob.contact.email = email;
     if (city) newJob.location.city = city;
     if (state) newJob.location.state = state;

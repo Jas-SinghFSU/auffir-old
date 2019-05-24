@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postJob } from "../../actions/jobs";
 
-const CreateJob = props => {
+const CreateJob = ({ postJob }) => {
   const [formData, setFormData] = useState({
     company: "",
     state: "",
@@ -14,7 +14,7 @@ const CreateJob = props => {
     phone: "",
     email: "",
     description: "",
-    employmenttype: "",
+    employmenttype: "Full-Time",
     title: ""
   });
 
@@ -34,111 +34,119 @@ const CreateJob = props => {
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const onSubmit = e => {
+    postJob(formData);
+  };
   return (
     <div className='contentContainer'>
-      <div class='field'>
-        <label class='label'>*Job Title</label>
-        <div class='control has-icons-left has-icons-right'>
-          <span class='icon is-small is-left'>
-            <i class='fas fa-heading' />
+      <div className='field'>
+        <label className='label'>*Job Title</label>
+        <div className='control has-icons-left has-icons-right'>
+          <span className='icon is-small is-left'>
+            <i className='fas fa-heading' />
           </span>
           <input
-            class='input'
+            className='input'
             type='text'
             placeholder='*Job Title'
             name='title'
             value={title}
             onChange={e => onChange(e)}
           />
-          <span class='icon is-small is-right'>
-            <i class='fas fa-check' />
+          <span className='icon is-small is-right'>
+            <i className='fas fa-check' />
           </span>
         </div>
       </div>
 
-      <div class='field'>
-        <label class='label'>*Company Name</label>
-        <div class='control has-icons-left has-icons-right'>
-          <span class='icon is-small is-left'>
-            <i class='fas fa-store-alt' />
+      <div className='field'>
+        <label className='label'>*Company Name</label>
+        <div className='control has-icons-left has-icons-right'>
+          <span className='icon is-small is-left'>
+            <i className='fas fa-store-alt' />
           </span>
           <input
-            class='input'
+            className='input'
             type='text'
             placeholder='*Company Name'
             name='company'
             value={company}
             onChange={e => onChange(e)}
           />
-          <span class='icon is-small is-right'>
-            <i class='fas fa-check' />
+          <span className='icon is-small is-right'>
+            <i className='fas fa-check' />
           </span>
         </div>
       </div>
 
-      <div class='field'>
-        <label class='label'>Email</label>
-        <div class='control has-icons-left has-icons-right'>
+      <div className='field'>
+        <label className='label'>Email</label>
+        <div className='control has-icons-left has-icons-right'>
           <input
-            class={"input" /*is-danger*/}
+            className={"input" /*is-danger*/}
             type='email'
-            placeholder='Email input'
+            placeholder='Email'
             name='email'
             value={email}
             onChange={e => onChange(e)}
           />
-          <span class='icon is-small is-left'>
-            <i class='fas fa-envelope' />
+          <span className='icon is-small is-left'>
+            <i className='fas fa-envelope' />
           </span>
-          <span class='icon is-small is-right'>
-            <i class='fas fa-exclamation-triangle' />
+          <span className='icon is-small is-right'>
+            <i className='fas fa-exclamation-triangle' />
           </span>
         </div>
-        {/*<p class='help is-danger'>This email is invalid</p>*/}
+        {/*<p className='help is-danger'>This email is invalid</p>*/}
       </div>
 
-      <div class='field'>
-        <label class='label'>*Phone</label>
-        <div class='control has-icons-left has-icons-right'>
+      <div className='field'>
+        <label className='label'>*Phone</label>
+        <div className='control has-icons-left has-icons-right'>
           <input
-            class='input'
+            className='input'
             type='email'
             placeholder='*(123) 456-78990'
             name='phone'
             value={phone}
             onChange={e => onChange(e)}
           />
-          <span class='icon is-small is-left'>
-            <i class='fas fa-phone' />
+          <span className='icon is-small is-left'>
+            <i className='fas fa-phone' />
           </span>
-          <span class='icon is-small is-right'>
-            <i class='fas fa-exclamation-triangle' />
+          <span className='icon is-small is-right'>
+            <i className='fas fa-exclamation-triangle' />
           </span>
         </div>
       </div>
 
-      <div class='field'>
-        <label class='label'>Employment Type</label>
-        <div class='control has-icons-left'>
-          <div class='select is-primary'>
-            <select>
-              <option selected>Full-Time</option>
-              <option>Part-Time</option>
-              <option>Temporary</option>
-              <option>Seasonal</option>
+      <div className='field'>
+        <label className='label'>Employment Type</label>
+        <div className='control has-icons-left'>
+          <div className='select is-primary'>
+            <select
+              name='employmenttype'
+              value={employmenttype}
+              onChange={e => onChange(e)}
+            >
+              <option defaultValue='Full-Time'>Full-Time</option>
+              <option value='Part-Time'>Part-Time</option>
+              <option value='Temporary'>Temporary</option>
+              <option value='Seasonal'>Seasonal</option>
             </select>
           </div>
-          <div class='icon is-small is-left'>
-            <i class='fas fa-business-time' />
+          <div className='icon is-small is-left'>
+            <i className='fas fa-business-time' />
           </div>
         </div>
       </div>
 
-      <div class='field'>
-        <label class='label'>*Job Description</label>
-        <div class='control'>
+      <div className='field'>
+        <label className='label'>*Job Description</label>
+        <div className='control'>
           <textarea
-            class='textarea'
+            className='textarea'
             placeholder='*Description'
             name='description'
             value={description}
@@ -148,95 +156,97 @@ const CreateJob = props => {
       </div>
 
       <div className='field-body'>
-        <div class='field'>
-          <label class='label'>City</label>
-          <div class='control has-icons-left has-icons-right'>
+        <div className='field'>
+          <label className='label'>City</label>
+          <div className='control has-icons-left has-icons-right'>
             <input
-              class='input'
+              className='input'
               type='text'
               placeholder='City'
               name='city'
               value={city}
               onChange={e => onChange(e)}
             />
-            <span class='icon is-small is-left'>
-              <i class='fas fa-city' />
+            <span className='icon is-small is-left'>
+              <i className='fas fa-city' />
             </span>
-            <span class='icon is-small is-right'>
-              <i class='fas fa-exclamation-triangle' />
+            <span className='icon is-small is-right'>
+              <i className='fas fa-exclamation-triangle' />
             </span>
           </div>
         </div>
 
-        <div class='field'>
-          <label class='label'>State</label>
-          <div class='control has-icons-left has-icons-right'>
+        <div className='field'>
+          <label className='label'>State</label>
+          <div className='control has-icons-left has-icons-right'>
             <input
-              class='input'
+              className='input'
               type='text'
               placeholder='State'
               name='state'
               value={state}
               onChange={e => onChange(e)}
             />
-            <span class='icon is-small is-left'>
-              <i class='fas fa-map-marker-alt' />
+            <span className='icon is-small is-left'>
+              <i className='fas fa-map-marker-alt' />
             </span>
-            <span class='icon is-small is-right'>
-              <i class='fas fa-exclamation-triangle' />
+            <span className='icon is-small is-right'>
+              <i className='fas fa-exclamation-triangle' />
             </span>
           </div>
         </div>
       </div>
 
       <div className='field-body'>
-        <div class='field'>
-          <label class='label'>Zip Code</label>
-          <div class='control has-icons-left has-icons-right'>
+        <div className='field'>
+          <label className='label'>Zip Code</label>
+          <div className='control has-icons-left has-icons-right'>
             <input
-              class='input'
+              className='input'
               type='text'
               placeholder='Zip Code'
               name='zipcode'
               value={zipcode}
               onChange={e => onChange(e)}
             />
-            <span class='icon is-small is-left'>
-              <i class='fas fa-sort-numeric-down' />
+            <span className='icon is-small is-left'>
+              <i className='fas fa-sort-numeric-down' />
             </span>
-            <span class='icon is-small is-right'>
-              <i class='fas fa-exclamation-triangle' />
+            <span className='icon is-small is-right'>
+              <i className='fas fa-exclamation-triangle' />
             </span>
           </div>
         </div>
 
-        <div class='field'>
-          <label class='label'>Country</label>
-          <div class='control has-icons-left has-icons-right'>
+        <div className='field'>
+          <label className='label'>Country</label>
+          <div className='control has-icons-left has-icons-right'>
             <input
-              class='input'
+              className='input'
               type='text'
               placeholder='Country'
               name='country'
               value={country}
               onChange={e => onChange(e)}
             />
-            <span class='icon is-small is-left'>
-              <i class='fas fa-globe-americas' />
+            <span className='icon is-small is-left'>
+              <i className='fas fa-globe-americas' />
             </span>
-            <span class='icon is-small is-right'>
-              <i class='fas fa-exclamation-triangle' />
+            <span className='icon is-small is-right'>
+              <i className='fas fa-exclamation-triangle' />
             </span>
           </div>
         </div>
       </div>
 
-      <div class='field is-grouped'>
-        <div class='control'>
-          <button class='button is-link'>Submit</button>
+      <div className='field is-grouped submitPost'>
+        <div className='control'>
+          <button className='button is-link' onClick={e => onSubmit()}>
+            Submit
+          </button>
         </div>
-        <div class='control'>
-          <button class='button is-text'>Cancel</button>
+        <div className='control'>
+          <button className='button is-text'>Cancel</button>
         </div>
       </div>
     </div>
@@ -245,4 +255,7 @@ const CreateJob = props => {
 
 CreateJob.propTypes = {};
 
-export default CreateJob;
+export default connect(
+  null,
+  { postJob }
+)(CreateJob);

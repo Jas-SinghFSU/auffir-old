@@ -47,7 +47,10 @@ const Navbar = ({ logout, isAuthenticated, loading }) => {
               Home
             </Link>
             <Link className='navbar-item' to='/jobpostings'>
-              Jobs
+              Find Jobs
+            </Link>
+            <Link className='navbar-item' to='/jobpost/create'>
+              Post Job
             </Link>
           </div>
 

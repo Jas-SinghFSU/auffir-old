@@ -54,6 +54,8 @@
 
 .contentContainer {
   padding-top: 4em;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Text Styles */
@@ -78,26 +80,36 @@
   margin-bottom: 30px;
 }
 
-.card-header.jobs {
+.card-content.jobs {
   display: block;
+  padding-top: 1px;
+  padding-bottom: 0px;
 }
 
-.card-header.jobs > p {
-  padding: 1px;
-  margin-left: 20px;
+.card-content.jobs > p {
+  padding-bottom: 1px;
 }
 
-.card-header-title.company {
+.title.jobTitle {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+.title.company {
   font-size: 14px;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.card-header-title.location {
+.title.location {
   font-size: 14px;
   font-weight: 600;
   color: dimgrey;
 }
 
+.field.is-grouped.submitPost {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 /* Login page CSS */
 
 $primary: hsl(171, 100%, 41%);

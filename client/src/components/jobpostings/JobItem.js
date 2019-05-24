@@ -22,10 +22,10 @@ const JobItem = ({
   return (
     <div className='jobItem'>
       <div className='card'>
-        <header className='card-header jobs'>
-          <p className='card-header-title'>{title}</p>
-          <p className='card-header-title company'>{company && company}</p>
-          <p className='card-header-title location'>
+        <header className='card-content jobs'>
+          <p className='title jobTitle'>{title}</p>
+          <p className='title company'>{company && company}</p>
+          <p className='title location'>
             {location.city && <Fragment>{location.city}</Fragment>}
             {location.state && <Fragment>{", " + location.state}</Fragment>}
             {location.country && <Fragment>{", " + location.country}</Fragment>}
@@ -39,6 +39,23 @@ const JobItem = ({
             <br />
             <span>{description}</span>
 
+            <br />
+            <br />
+            {employmentType && (
+              <Fragment>
+                <span>
+                  <strong>Length: </strong>
+                </span>
+                <br />
+                <span>{employmentType}</span>
+                <br />
+                <br />
+              </Fragment>
+            )}
+
+            <span>
+              <strong>Posted At: </strong>
+            </span>
             <br />
             <Moment format='MM/DD/YYYY'>{date}</Moment>
             {" at "}
