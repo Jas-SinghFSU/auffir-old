@@ -85,7 +85,6 @@ Delete Files in client folder called:
 - index.css // And remove import reference from index.js
 - logo.svg //Remove import reference from app.js
 - serviceWorker.js // And remove import reference and any reference from index.js
-- To connect to application, go to 'Overview' and click CONNECT to get the connection configuration string
 
 # Database
 
@@ -98,6 +97,7 @@ Cluster hosted on www.mongodb.com
 - Create new cluster
 - Add user by going to the security tab with read and write privileges.
 - In the security tab > ip whitelist, add an IP address that can be used from anywhere
+- To connect to application, go to 'Overview' and click CONNECT to get the connection configuration string
 
 ## Contributing
 

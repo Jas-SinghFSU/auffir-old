@@ -9,6 +9,19 @@ const config = require("config");
 
 // Used asnyc method await on items that return a promise instead of doing .then() etc...
 
+// @route   GET api/profile/getprofile
+// @desc    Get current profile
+// @access  Private
+router.get("/getprofile", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.profile.id).select("-password");
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   POST api/profile/create
 // @desc    Register user
 // @access  Public
@@ -25,7 +38,7 @@ router.post(
 
     //Check if there were any errors in the form validation
     if (!errors.isEmpty()) {
-      res.status(400).json({ error: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { firstname, lastname, username, password } = req.body;
@@ -35,7 +48,9 @@ router.post(
       let profile = await Profile.findOne({ username });
 
       if (profile) {
-        return res.status(400).json({ msg: "Username is already taken." });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Username is already taken." }] });
       }
 
       // If profile is not taken, create a new object to store into the database
@@ -91,7 +106,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { username, password } = req.body;
@@ -100,13 +115,17 @@ router.post(
       let profile = await Profile.findOne({ username });
 
       if (!profile) {
-        return res.status(400).json({ msg: "Incorrect username or password." });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Incorrect username or password." }] });
       }
 
       const isMatch = await bcrypt.compare(password, profile.password);
 
       if (!isMatch) {
-        return res.status(400).json({ msg: "Incorrect username or password." });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Incorrect username or password." }] });
       }
 
       //Pack the profile id in a payload to pass to jwt for a token

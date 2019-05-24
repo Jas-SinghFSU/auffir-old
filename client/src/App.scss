@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap");
+
+.navbarLogo {
+  font-size: 28px;
+  font-weight: bold;
+}
+.navbar-menu {
+  padding-left: 20px;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+}
+.navbar-menu.is-active {
+  display: block;
+  background-color: #00d1b2;
+  color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-menu.is-active :hover {
+  background-color: #00d1b2;
+  color: white;
+}
+.landing {
+  position: relative;
+  background: url("./img/jobsearch.jpg") no-repeat center/cover;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.dark-tint {
+  background-color: rgba(0, 0, 0, 0.425);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-text {
+  color: #fff;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.landing-text > p {
+  margin-bottom: 40px;
+}
+
+.contentContainer {
+  padding-top: 4em;
+}
+
+/* Text Styles */
+.x-large {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.jobItem {
+  margin-bottom: 30px;
+}
+
+.card-header.jobs {
+  display: block;
+}
+
+.card-header.jobs > p {
+  padding: 1px;
+  margin-left: 20px;
+}
+
+.card-header-title.company {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-header-title.location {
+  font-size: 14px;
+  font-weight: 600;
+  color: dimgrey;
+}
+
+/* Login page CSS */
+
+$primary: hsl(171, 100%, 41%);
+$grey-darker: hsl(0, 0%, 21%);
+$grey-dark: hsl(0, 0%, 29%);
+$grey: hsl(0, 0%, 48%);
+$grey-light: hsl(0, 0%, 71%);
+$grey-lighter: hsl(0, 0%, 86%);
+
+#login {
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
+
+  .login-card {
+    background: #fff;
+    width: 40rem;
+    height: 30rem;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
+
+    .card-title {
+      background-color: darken($primary, 5%);
+      padding: 1.3rem;
+
+      h1 {
+        color: #fff;
+        text-align: center;
+      }
+    }
+
+    .content {
+      padding: 3rem 2.5rem 5rem;
+    }
+
+    #username,
+    #password {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
+      padding: 0.25rem 0;
+      border: none;
+      border-bottom: 1px solid $grey-lighter;
+      transition: all 0.5s;
+
+      &:hover {
+        border-color: $grey;
+      }
+
+      &:active,
+      &:focus {
+        border-color: $primary;
+      }
+    }
+
+    .checkbox {
+      color: $grey-light;
+      font-size: 0.8rem;
+
+      span {
+        margin-left: 0.5rem;
+      }
+    }
+
+    a {
+      font-size: 0.8rem;
+    }
+
+    .options {
+      color: $grey-light;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: $primary;
+      border-radius: 4rem;
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 2px solid $primary;
+      padding: 0.9rem 0 1.1rem;
+      transition: color 0.5s, border-color 0.5s;
+
+      &:hover,
+      &:focus {
+        color: darken($primary, 10%);
+        border-color: darken($primary, 10%);
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+}
+
+.btn.btn-primary {
+  outline: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+button:active {
+  outline: none !important;
+}
+
+/* Progress bar CSS */
+
+// Variables for testing
+$text: #4a4a4a;
+$progress-bar-background-color: #dbdbdb;
+.progress {
+  background: $progress-bar-background-color;
+
+  &::-webkit-progress-bar {
+    background: transparent !important; // override bulma.css
+  }
+
+  &:indeterminate {
+    animation: progress-indeterminate 1s linear infinite;
+    background: $progress-bar-background-color
+      linear-gradient(to right, $text 30%, $progress-bar-background-color 30%)
+      top left / 150% 150% no-repeat;
+
+    &::-moz-progress-bar {
+      background: transparent !important; // override bulma.css
+    }
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
