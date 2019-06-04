@@ -67,10 +67,6 @@ export const getJobById = postID => async dispatch => {
     const res = await axios.get(`/api/postings/${postID}`);
 
     dispatch({
-      type: CLEAR_JOB
-    });
-
-    dispatch({
       type: GET_JOB,
       payload: res.data
     });

@@ -107,9 +107,67 @@
   font-weight: 600;
   color: dimgrey;
 }
+.react-phone-number-input__row {
+  box-sizing: content-box;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  position: relative;
+  vertical-align: top;
+  background-color: #fff;
+  border-color: #dbdbdb;
+  color: #363636;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  font-size: 1rem;
+  position: relative;
+  text-align: left;
+}
+
+.react-phone-number-input__input {
+  border-bottom: none;
+}
+
+.react-phone-number-input__icon {
+  width: 1.24em;
+  height: 0.93em;
+  box-sizing: content-box;
+  border: none;
+}
+
+.field-body.types {
+  padding-bottom: 12px;
+}
+
+.field-body.locations {
+  padding-bottom: 12px;
+}
 
 .content.jobItemBody {
   line-height: 1.5;
+}
+
+.viewJob.jobInfo.subtitle {
+  margin-bottom: 5px;
 }
 
 .card-content.jobItemContent {
@@ -270,4 +328,22 @@ $progress-bar-background-color: #dbdbdb;
   font-family: "Open Sans", sans-serif;
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
   border-radius: 4px;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.ql-container.ql-snow {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ul {
+  list-style: inside;
+}
+
+ol {
+  list-style-position: inside;
 }

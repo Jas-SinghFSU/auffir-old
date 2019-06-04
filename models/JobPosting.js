@@ -32,6 +32,10 @@ const JobPostingSchema = new Schema({
     type: String,
     default: ""
   },
+  occupationType: {
+    type: String,
+    default: ""
+  },
   industryType: {
     type: String,
     default: ""

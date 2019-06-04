@@ -4,6 +4,9 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postJob } from "../../actions/jobs";
 import ReactQuill from "react-quill";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import { jobFormData } from "./formdata";
 
 const CreateJob = ({ postJob }) => {
   const [formData, setFormData] = useState({
@@ -29,7 +32,9 @@ const CreateJob = ({ postJob }) => {
     email,
     description,
     employmenttype,
-    title
+    title,
+    industrytype,
+    occupationtype
   } = formData;
 
   const onChange = e => {
@@ -39,7 +44,9 @@ const CreateJob = ({ postJob }) => {
   const onChangeDescription = value => {
     setFormData({ ...formData, description: value });
   };
-
+  const onChangePhone = value => {
+    setFormData({ ...formData, phone: value });
+  };
   const onSubmit = e => {
     postJob(formData);
   };
@@ -109,44 +116,79 @@ const CreateJob = ({ postJob }) => {
       <div className='field'>
         <label className='label'>*Phone</label>
         <div className='control has-icons-left has-icons-right'>
-          <input
-            className='input'
-            type='email'
-            placeholder='*(123) 456-78990'
-            name='phone'
+          <PhoneInput
+            className='inputPhone'
+            country='US'
             value={phone}
-            onChange={e => onChange(e)}
+            onChange={onChangePhone}
           />
-          <span className='icon is-small is-left'>
-            <i className='fas fa-phone' />
-          </span>
           <span className='icon is-small is-right'>
             <i className='fas fa-exclamation-triangle' />
           </span>
         </div>
       </div>
-
-      <div className='field'>
-        <label className='label'>Employment Type</label>
-        <div className='control has-icons-left'>
-          <div className='select is-primary'>
-            <select
-              name='employmenttype'
-              value={employmenttype}
-              onChange={e => onChange(e)}
-            >
-              <option defaultValue='Full-Time'>Full-Time</option>
-              <option value='Part-Time'>Part-Time</option>
-              <option value='Temporary'>Temporary</option>
-              <option value='Seasonal'>Seasonal</option>
-            </select>
+      <div className='field-body types'>
+        <div className='field'>
+          <label className='label'>Employment Type</label>
+          <div className='control has-icons-left'>
+            <div className='select is-primary'>
+              <select
+                name='employmenttype'
+                value={employmenttype}
+                onChange={e => onChange(e)}
+              >
+                <option defaultValue='Full-Time'>Full-Time</option>
+                <option value='Part-Time'>Part-Time</option>
+                <option value='Temporary'>Temporary</option>
+                <option value='Seasonal'>Seasonal</option>
+              </select>
+            </div>
+            <div className='icon is-small is-left'>
+              <i className='fas fa-business-time' />
+            </div>
           </div>
-          <div className='icon is-small is-left'>
-            <i className='fas fa-business-time' />
+        </div>
+
+        <div className='field'>
+          <label className='label'>Job Industry</label>
+          <div className='control has-icons-left'>
+            <div className='select is-primary'>
+              <select
+                name='industrytype'
+                value={industrytype}
+                onChange={e => onChange(e)}
+              >
+                {jobFormData.industries.map(industry => (
+                  <option value={industry}>{industry}</option>
+                ))}
+              </select>
+            </div>
+            <div className='icon is-small is-left'>
+              <i className='fas fa-business-time' />
+            </div>
+          </div>
+        </div>
+
+        <div className='field'>
+          <label className='label'>Occupation</label>
+          <div className='control has-icons-left'>
+            <div className='select is-primary'>
+              <select
+                name='occupationtype'
+                value={occupationtype}
+                onChange={e => onChange(e)}
+              >
+                {jobFormData.occupations.map(occupation => (
+                  <option value={occupation}>{occupation}</option>
+                ))}
+              </select>
+            </div>
+            <div className='icon is-small is-left'>
+              <i className='fas fa-business-time' />
+            </div>
           </div>
         </div>
       </div>
-
       <div className='field'>
         <label className='label'>*Job Description</label>
         <div className='control'>
@@ -160,7 +202,7 @@ const CreateJob = ({ postJob }) => {
         </div>
       </div>
 
-      <div className='field-body'>
+      <div className='field-body locations'>
         <div className='field'>
           <label className='label'>City</label>
           <div className='control has-icons-left has-icons-right'>
@@ -202,7 +244,7 @@ const CreateJob = ({ postJob }) => {
         </div>
       </div>
 
-      <div className='field-body'>
+      <div className='field-body locations'>
         <div className='field'>
           <label className='label'>Zip Code</label>
           <div className='control has-icons-left has-icons-right'>
@@ -258,9 +300,12 @@ const CreateJob = ({ postJob }) => {
   );
 };
 
-CreateJob.propTypes = {};
+CreateJob.propTypes = {
+  postJob: PropTypes.func.isRequired,
+  jobFormData: PropTypes.object.isRequired
+};
 
 export default connect(
   null,
-  { postJob }
+  { postJob, jobFormData }
 )(CreateJob);

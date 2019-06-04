@@ -86,7 +86,8 @@ router.post(
       city,
       state,
       country,
-      zipcode
+      zipcode,
+      occupationtype
     } = req.body;
 
     const newJob = {};
@@ -102,6 +103,7 @@ router.post(
     if (experience) newJob.experience = experience;
     if (employmenttype) newJob.employmentType = employmenttype;
     if (industrytype) newJob.industryType = industrytype;
+    if (occupationtype) newJob.occupationType = occupationtype;
     if (email) newJob.contact.email = email;
     if (city) newJob.location.city = city;
     if (state) newJob.location.state = state;
@@ -189,7 +191,8 @@ router.put(
       city,
       state,
       country,
-      zipcode
+      zipcode,
+      occupationtype
     } = req.body;
 
     const newJob = {};
@@ -205,6 +208,7 @@ router.put(
     if (experience) newJob.experience = experience;
     if (employmenttype) newJob.employmentType = employmenttype;
     if (industrytype) newJob.industryType = industrytype;
+    if (occupationtype) newJob.occupationType = occupationtype;
     if (email) newJob.contact.email = email;
     if (city) newJob.location.city = city;
     if (state) newJob.location.state = state;
