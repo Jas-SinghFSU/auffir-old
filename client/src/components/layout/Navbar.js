@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import auth from "../../reducers/auth";
 import { logout } from "../../actions/auth";
 
-const Navbar = ({ logout, isAuthenticated, loading }) => {
+const Navbar = ({ logout, isAuthenticated, loading, profile }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -56,6 +56,13 @@ const Navbar = ({ logout, isAuthenticated, loading }) => {
 
           <div className='navbar-end'>
             <div className='navbar-item'>
+              {profile && (
+                <Fragment>
+                  <div className=''>{"Welcome, " + profile.firstName}</div>
+                </Fragment>
+              )}
+            </div>
+            <div className='navbar-item'>
               {!loading && (
                 <div className='navButtons'>
                   {isAuthenticated ? (
@@ -98,11 +105,13 @@ const Navbar = ({ logout, isAuthenticated, loading }) => {
 
 Navbar.propTypes = {
   isAuthenticated: PropTypes.bool,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  profile: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  profile: state.auth.profile,
   loading: state.auth.loading
 });
 

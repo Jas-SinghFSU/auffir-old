@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postJob } from "../../actions/jobs";
+import ReactQuill from "react-quill";
 
 const CreateJob = ({ postJob }) => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,10 @@ const CreateJob = ({ postJob }) => {
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onChangeDescription = value => {
+    setFormData({ ...formData, description: value });
   };
 
   const onSubmit = e => {
@@ -145,12 +150,12 @@ const CreateJob = ({ postJob }) => {
       <div className='field'>
         <label className='label'>*Job Description</label>
         <div className='control'>
-          <textarea
-            className='textarea'
+          <ReactQuill
+            className='textareaa'
             placeholder='*Description'
             name='description'
             value={description}
-            onChange={e => onChange(e)}
+            onChange={onChangeDescription}
           />
         </div>
       </div>

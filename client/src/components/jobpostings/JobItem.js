@@ -19,11 +19,30 @@ const JobItem = ({
     date
   }
 }) => {
+  // For minimizing the description to 200 characters and ending the description after a full word
+  const miniDescLength = 200;
+  var newDescription = description;
+  newDescription = newDescription.replace(
+    /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+    " "
+  );
+  var miniDescription = newDescription.substring(0, miniDescLength);
+
+  for (var i = miniDescLength; description.charAt(i).match("[a-zA-Z]+"); i++) {
+    miniDescription += description[i];
+  }
+  if (description.length > 200) {
+    miniDescription += "...";
+  }
+  // End of description minimizer
+
   return (
     <div className='jobItem'>
       <div className='card'>
         <header className='card-content jobs'>
-          <p className='title jobTitle'>{title}</p>
+          <Link to={`/jobpost/view/${_id}`}>
+            <p className='title jobTitle link'>{title}</p>
+          </Link>
           <p className='title company'>{company && company}</p>
           <p className='title location'>
             {location.city && <Fragment>{location.city}</Fragment>}
@@ -31,15 +50,13 @@ const JobItem = ({
             {location.country && <Fragment>{", " + location.country}</Fragment>}
           </p>
         </header>
-        <div className='card-content'>
-          <div className='content'>
+        <div className='card-content jobItemContent'>
+          <div className='content jobItemBody'>
             <span>
               <strong>Description: </strong>
             </span>
             <br />
-            <span>{description}</span>
-
-            <br />
+            <span>{miniDescription}</span>
             <br />
             {employmentType && (
               <Fragment>
@@ -49,12 +66,11 @@ const JobItem = ({
                 <br />
                 <span>{employmentType}</span>
                 <br />
-                <br />
               </Fragment>
             )}
 
             <span>
-              <strong>Posted At: </strong>
+              <strong>Posted On: </strong>
             </span>
             <br />
             <Moment format='MM/DD/YYYY'>{date}</Moment>
@@ -63,12 +79,12 @@ const JobItem = ({
           </div>
         </div>
         <footer className='card-footer'>
-          <a href='#' className='card-footer-item'>
+          <Link to='#' className='card-footer-item'>
             Save
-          </a>
-          <a href='#' className='card-footer-item'>
+          </Link>
+          <Link to={`/jobpost/view/${_id}`} className='card-footer-item'>
             View
-          </a>
+          </Link>
         </footer>
       </div>
     </div>

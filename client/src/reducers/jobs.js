@@ -3,6 +3,7 @@ import {
   GET_JOB,
   JOBS_ERROR,
   CLEAR_JOBS,
+  CLEAR_JOB,
   ADD_JOB
 } from "../actions/types";
 
@@ -23,6 +24,12 @@ export default function(state = initialState, action) {
         jobs: payload,
         loading: false
       };
+    case GET_JOB:
+      return {
+        ...state,
+        job: payload,
+        loading: false
+      };
     case ADD_JOB:
       return {
         ...state,
@@ -39,7 +46,13 @@ export default function(state = initialState, action) {
       return {
         jobs: [],
         job: null,
-        loading: false
+        loading: true
+      };
+    case CLEAR_JOB:
+      return {
+        ...state,
+        job: null,
+        loading: true
       };
     default:
       return state;

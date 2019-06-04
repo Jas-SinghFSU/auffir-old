@@ -1,5 +1,12 @@
 import axios from "axios";
-import { GET_JOBS, GET_JOB, JOBS_ERROR, ADD_JOB } from "./types";
+import {
+  GET_JOBS,
+  GET_JOB,
+  JOBS_ERROR,
+  ADD_JOB,
+  CLEAR_JOBS,
+  CLEAR_JOB
+} from "./types";
 import { setAlert } from "./alert";
 
 // Get Jobs
@@ -51,5 +58,47 @@ export const postJob = formData => async dispatch => {
         status: err.response.status
       }
     });
+  }
+};
+
+// Get Job Posting by ID
+export const getJobById = postID => async dispatch => {
+  try {
+    const res = await axios.get(`/api/postings/${postID}`);
+
+    dispatch({
+      type: CLEAR_JOB
+    });
+
+    dispatch({
+      type: GET_JOB,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
+
+// Empty job posting state(s)
+export const emptyJobPostings = request => dispatch => {
+  switch (request) {
+    case "all":
+      dispatch({
+        type: CLEAR_JOBS
+      });
+    case "this":
+      dispatch({
+        type: CLEAR_JOB
+      });
+    default:
+      dispatch({
+        type: CLEAR_JOBS
+      });
   }
 };

@@ -49,7 +49,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     type='text'
                     name='firstname'
                     title='firstname'
-                    placeholder='firstname'
+                    placeholder='Firstname'
                     value={firstname}
                     onChange={e => onChange(e)}
                     required
@@ -62,7 +62,7 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
                     type='text'
                     name='lastname'
                     title='lastname'
-                    placeholder='lastname'
+                    placeholder='Lastname'
                     value={lastname}
                     onChange={e => onChange(e)}
                     required

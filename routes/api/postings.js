@@ -121,6 +121,23 @@ router.post(
   }
 );
 
+// @route   Get api/postings/id
+// @desc    Get a job posting
+// @access  Public
+router.get("/:id", async (req, res) => {
+  try {
+    const viewPost = await JobPosting.findById(req.params.id);
+
+    if (!viewPost) {
+      return res.status(404).json({ msg: "Post not found!" });
+    }
+    return res.json(viewPost);
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send("Server Error");
+  }
+});
+
 // @route   Put api/postings/id
 // @desc    Edit a job posting
 // @access  Private
